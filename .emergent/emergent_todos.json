@@ -1,0 +1,34 @@
+[
+  {
+    "content": "Phase 1: Core POC - Gemini Description Generation",
+    "status": "in_progress"
+  },
+  {
+    "content": "Phase 1: Test Gemini API for medical term description generation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Main Application Development - Backend",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Main Application Development - Frontend",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: SEO/AEO Implementation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: Admin Panel Implementation",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 2: End-to-End Testing with Testing Agent",
+    "status": "pending"
+  },
+  {
+    "content": "Phase 3: Import all 1,366 terms and batch generate descriptions",
+    "status": "pending"
+  }
+]
