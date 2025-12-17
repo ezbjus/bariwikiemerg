@@ -160,7 +160,12 @@ async def get_stats(terms_collection):
     ]
     categories = {}
     async for doc in terms_collection.aggregate(pipeline):
-        categories[doc["_id"] or "Uncategorized"] = doc["count"]
+        cat_name = doc["_id"]
+        if cat_name is None:
+            cat_name = "Uncategorized"
+        elif isinstance(cat_name, list):
+            cat_name = str(cat_name)
+        categories[cat_name] = doc["count"]
     
     return {
         "total": total,
