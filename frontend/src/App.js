@@ -1,53 +1,61 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { Toaster } from './components/ui/sonner';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+// Pages
+import HomePage from './pages/HomePage';
+import TermPage from './pages/TermPage';
+import BrowsePage from './pages/BrowsePage';
+import CategoryPage from './pages/CategoryPage';
+import SearchPage from './pages/SearchPage';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
+import AdminTerms from './pages/AdminTerms';
+import AdminEditTerm from './pages/AdminEditTerm';
+import AdminImport from './pages/AdminImport';
 
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
+// Components
+import Header from './components/Header';
+import ProtectedRoute from './components/ProtectedRoute';
 
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <HelmetProvider>
+      <Router>
+        <div className="min-h-screen bg-white">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<><Header /><HomePage /></>} />
+            <Route path="/wiki/:slug" element={<><Header /><TermPage /></>} />
+            <Route path="/browse/:letter" element={<><Header /><BrowsePage /></>} />
+            <Route path="/category/:category" element={<><Header /><CategoryPage /></>} />
+            <Route path="/search" element={<><Header /><SearchPage /></>} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin" element={
+              <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+            } />
+            <Route path="/admin/terms" element={
+              <ProtectedRoute><AdminTerms /></ProtectedRoute>
+            } />
+            <Route path="/admin/terms/:id/edit" element={
+              <ProtectedRoute><AdminEditTerm /></ProtectedRoute>
+            } />
+            <Route path="/admin/terms/new" element={
+              <ProtectedRoute><AdminEditTerm /></ProtectedRoute>
+            } />
+            <Route path="/admin/import" element={
+              <ProtectedRoute><AdminImport /></ProtectedRoute>
+            } />
+          </Routes>
+          <Toaster position="top-right" />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 
