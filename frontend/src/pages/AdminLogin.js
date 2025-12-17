@@ -25,17 +25,17 @@ const AdminLogin = () => {
         body: JSON.stringify({ username, password })
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.detail || 'Login failed');
+        throw new Error(data.detail || 'Login failed');
       }
 
-      const data = await response.json();
       localStorage.setItem('adminToken', data.token);
       toast.success('Login successful!');
       navigate('/admin');
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.message || 'Login failed');
     } finally {
       setLoading(false);
     }
