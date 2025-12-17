@@ -1,15 +1,15 @@
 [
   {
     "content": "Phase 1: Core POC - Gemini Description Generation",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
     "content": "Phase 1: Test Gemini API for medical term description generation",
-    "status": "pending"
+    "status": "completed"
   },
   {
     "content": "Phase 2: Main Application Development - Backend",
-    "status": "pending"
+    "status": "in_progress"
   },
   {
     "content": "Phase 2: Main Application Development - Frontend",
