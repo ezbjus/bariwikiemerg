@@ -29,10 +29,10 @@
   },
   {
     "content": "Phase 3: Import all 1,366 terms from Excel file",
-    "status": "in_progress"
+    "status": "completed"
   },
   {
-    "content": "Phase 3: Publish imported terms",
-    "status": "pending"
+    "content": "Phase 3: Publish imported terms - 1,360 terms published",
+    "status": "completed"
   }
 ]
