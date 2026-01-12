@@ -347,8 +347,9 @@ async def get_sitemap():
         {"$group": {"_id": "$category"}},
     ]
     async for doc in terms_collection.aggregate(pipeline):
-        if doc["_id"]:
-            category_slug = doc["_id"].replace(" ", "%20")
+        cat_id = doc["_id"]
+        if cat_id and isinstance(cat_id, str):
+            category_slug = cat_id.replace(" ", "%20")
             xml += f'''  <url>
     <loc>{base_url}/category/{category_slug}</loc>
     <changefreq>weekly</changefreq>
