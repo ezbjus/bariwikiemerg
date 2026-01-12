@@ -52,9 +52,16 @@ const resources = [
   }
 ];
 
-const SITE_URL = 'https://parnellwellness.com';
+// Use window.location.origin for SEO URLs in production
+const getSiteUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return 'https://parnellwellness.com';
+};
 
 const ResourcesPage = () => {
+  const SITE_URL = getSiteUrl();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
