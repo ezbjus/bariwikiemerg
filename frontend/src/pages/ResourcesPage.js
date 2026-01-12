@@ -52,13 +52,39 @@ const resources = [
   }
 ];
 
+const SITE_URL = 'https://parnellwellness.com';
+
 const ResourcesPage = () => {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Bariatric Surgery Resources",
+    "description": "Helpful resources for bariatric surgery patients including supplements, vitamins, and educational materials.",
+    "url": `${SITE_URL}/resources`,
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": resources.flatMap((section, sIndex) => 
+        section.items.map((item, iIndex) => ({
+          "@type": "ListItem",
+          "position": sIndex * 10 + iIndex + 1,
+          "url": item.url,
+          "name": item.title
+        }))
+      )
+    }
+  };
+
   return (
     <>
       <Helmet>
-        <title>Resources - BariWiki</title>
-        <meta name="description" content="Helpful resources for bariatric surgery patients including supplements, vitamins, and educational materials." />
-        <link rel="canonical" href="https://bari-wiki.preview.emergentagent.com/resources" />
+        <title>Bariatric Surgery Resources & Supplements | BariWiki</title>
+        <meta name="description" content="Helpful resources for bariatric surgery patients including supplements, vitamins, and educational materials. Curated resources for your weight loss journey." />
+        <link rel="canonical" href={`${SITE_URL}/resources`} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Bariatric Surgery Resources - BariWiki" />
+        <meta property="og:description" content="Helpful resources for bariatric surgery patients including supplements and vitamins." />
+        <meta property="og:url" content={`${SITE_URL}/resources`} />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>
 
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
