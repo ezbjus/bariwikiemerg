@@ -33,9 +33,13 @@ const BrowsePage = () => {
   return (
     <>
       <Helmet>
-        <title>Terms Starting with {upperLetter} - BariWiki</title>
-        <meta name="description" content={`Browse all bariatric surgery terms starting with the letter ${upperLetter}. Find definitions, procedures, and medical information.`} />
-        <link rel="canonical" href={`https://bari-wiki.preview.emergentagent.com/browse/${letter}`} />
+        <title>Bariatric Surgery Terms Starting with {upperLetter} | BariWiki</title>
+        <meta name="description" content={`Browse all bariatric surgery terms starting with the letter ${upperLetter}. Find definitions, procedures, and medical information for weight loss surgery.`} />
+        <link rel="canonical" href={`${SITE_URL}/browse/${letter}`} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`Terms Starting with ${upperLetter} - BariWiki`} />
+        <meta property="og:description" content={`Browse bariatric surgery terms starting with ${upperLetter}`} />
+        <meta property="og:url" content={`${SITE_URL}/browse/${letter}`} />
       </Helmet>
 
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
