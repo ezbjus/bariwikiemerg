@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import Breadcrumbs from '../components/Breadcrumbs';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+const SITE_URL = 'https://parnellwellness.com';
 
 const CategoryPage = () => {
   const { category } = useParams();
