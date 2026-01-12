@@ -42,9 +42,13 @@ const CategoryPage = () => {
   return (
     <>
       <Helmet>
-        <title>{decodedCategory} - BariWiki</title>
-        <meta name="description" content={`Browse all ${decodedCategory.toLowerCase()} terms in bariatric surgery. Find definitions, procedures, and medical information.`} />
-        <link rel="canonical" href={`https://bari-wiki.preview.emergentagent.com/category/${category}`} />
+        <title>{decodedCategory} - Bariatric Surgery Category | BariWiki</title>
+        <meta name="description" content={`Browse all ${decodedCategory.toLowerCase()} related to bariatric surgery. Find definitions, procedures, and medical information for weight loss surgery.`} />
+        <link rel="canonical" href={`${SITE_URL}/category/${category}`} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content={`${decodedCategory} - BariWiki`} />
+        <meta property="og:description" content={`Browse ${decodedCategory.toLowerCase()} in bariatric surgery`} />
+        <meta property="og:url" content={`${SITE_URL}/category/${category}`} />
       </Helmet>
 
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
