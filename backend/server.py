@@ -30,6 +30,7 @@ JWT_EXPIRATION_HOURS = 24
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "BariWiki2024!")
 EMERGENT_LLM_KEY = os.environ.get("EMERGENT_LLM_KEY")
+BASE_URL = os.environ.get("BASE_URL", "https://parnellwellness.com")
 
 # MongoDB client
 client = AsyncIOMotorClient(MONGO_URL)
