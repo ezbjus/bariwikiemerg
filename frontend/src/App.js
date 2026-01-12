@@ -19,6 +19,7 @@ import AdminImport from './pages/AdminImport';
 
 // Components
 import Header from './components/Header';
+import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 
 import './App.css';
