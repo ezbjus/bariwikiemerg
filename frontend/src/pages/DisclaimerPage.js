@@ -3,13 +3,19 @@ import { Helmet } from 'react-helmet-async';
 import { AlertTriangle, Shield, FileText, UserCheck, Info } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
+const SITE_URL = 'https://parnellwellness.com';
+
 const DisclaimerPage = () => {
   return (
     <>
       <Helmet>
-        <title>Medical Disclaimer - BariWiki</title>
-        <meta name="description" content="Important FDA medical disclaimer and legal information regarding the content on BariWiki bariatric surgery encyclopedia." />
-        <link rel="canonical" href="https://bari-wiki.preview.emergentagent.com/disclaimer" />
+        <title>FDA Medical Disclaimer | BariWiki by Parnell Wellness</title>
+        <meta name="description" content="Important FDA medical disclaimer and legal information regarding the content on BariWiki bariatric surgery encyclopedia. Read before using our resources." />
+        <link rel="canonical" href={`${SITE_URL}/disclaimer`} />
+        <meta name="robots" content="index, follow" />
+        <meta property="og:title" content="Medical Disclaimer - BariWiki" />
+        <meta property="og:description" content="Important FDA medical disclaimer and legal information." />
+        <meta property="og:url" content={`${SITE_URL}/disclaimer`} />
       </Helmet>
 
       <main id="main" className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
