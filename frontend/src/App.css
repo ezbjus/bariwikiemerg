@@ -1,6 +1,11 @@
 /* BariWiki - Wikipedia Style CSS */
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap');
 
+/* Hide Emergent badge */
+#emergent-badge {
+  display: none !important;
+}
+
 :root {
   --background: 0 0% 100%;
   --foreground: 222 84% 5%;
