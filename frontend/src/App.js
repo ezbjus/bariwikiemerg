@@ -34,6 +34,7 @@ function App() {
             <Route path="/browse/:letter" element={<><Header /><BrowsePage /></>} />
             <Route path="/category/:category" element={<><Header /><CategoryPage /></>} />
             <Route path="/search" element={<><Header /><SearchPage /></>} />
+            <Route path="/resources" element={<><Header /><ResourcesPage /></>} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
