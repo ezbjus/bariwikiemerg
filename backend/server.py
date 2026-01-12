@@ -376,11 +376,43 @@ async def get_sitemap():
 @app.get("/api/robots.txt")
 async def get_robots():
     """Return robots.txt for SEO"""
-    content = """User-agent: *
+    content = """# BariWiki - Bariatric Surgery Encyclopedia
+# https://parnellwellness.com
+
+User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin/*
 
-Sitemap: https://bari-wiki.preview.emergentagent.com/api/sitemap.xml
+# Sitemaps
+Sitemap: https://parnellwellness.com/api/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+
+# Bing-specific
+User-agent: Bingbot
+Allow: /
+
+# Allow AI crawlers for AEO
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
 """
     return Response(content=content, media_type="text/plain")
 
