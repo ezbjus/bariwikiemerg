@@ -1,9 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SITE_URL = 'https://parnellwellness.com';
+// Use window.location.origin for SEO URLs in production
+const getSiteUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return 'https://parnellwellness.com';
+};
+
 const SITE_NAME = 'BariWiki by Parnell Wellness';
-const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
 
 /**
  * SEO Component for comprehensive meta tags
@@ -14,7 +20,7 @@ const SEO = ({
   description,
   canonical,
   type = 'website',
-  image = DEFAULT_IMAGE,
+  image = null,
   article = null,
   noindex = false,
   structuredData = null,
