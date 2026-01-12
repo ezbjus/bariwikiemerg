@@ -1,0 +1,29 @@
+{
+  "short_name": "BariWiki",
+  "name": "BariWiki - Bariatric Surgery Encyclopedia",
+  "description": "Comprehensive encyclopedia of bariatric surgery terms, procedures, and medical information",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#1A67D3",
+  "background_color": "#ffffff",
+  "categories": ["medical", "health", "education", "reference"],
+  "lang": "en-US",
+  "orientation": "portrait-primary"
+}
