@@ -26,6 +26,9 @@ const SEO = ({
   structuredData = null,
   speakable = null
 }) => {
+  const SITE_URL = getSiteUrl();
+  const DEFAULT_IMAGE = `${SITE_URL}/og-image.png`;
+  const imageUrl = image || DEFAULT_IMAGE;
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `BariWiki - Bariatric Surgery Encyclopedia | ${SITE_NAME}`;
   const fullUrl = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
   
