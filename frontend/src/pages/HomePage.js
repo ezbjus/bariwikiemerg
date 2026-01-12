@@ -108,16 +108,38 @@ const HomePage = () => {
   return (
     <>
       <Helmet>
-        <title>BariWiki - Bariatric Surgery Encyclopedia</title>
-        <meta name="description" content="Comprehensive encyclopedia of bariatric surgery terms, procedures, and medical information. Your authoritative resource for weight loss surgery knowledge." />
-        <link rel="canonical" href="https://bari-wiki.preview.emergentagent.com/" />
+        {/* Primary Meta Tags */}
+        <title>BariWiki - Bariatric Surgery Encyclopedia | Parnell Wellness</title>
+        <meta name="title" content="BariWiki - Bariatric Surgery Encyclopedia | Parnell Wellness" />
+        <meta name="description" content="Comprehensive encyclopedia of 1,300+ bariatric surgery terms, procedures, and medical information. Expert resources for weight loss surgery patients and healthcare professionals." />
+        <meta name="keywords" content="bariatric surgery, weight loss surgery, gastric bypass, sleeve gastrectomy, bariatric terms, obesity surgery, metabolic surgery, bariatric glossary, weight loss procedures, bariatric dictionary" />
+        <link rel="canonical" href={SITE_URL} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_URL} />
+        <meta property="og:title" content="BariWiki - Bariatric Surgery Encyclopedia" />
+        <meta property="og:description" content="Comprehensive encyclopedia of 1,300+ bariatric surgery terms. Expert resources for weight loss surgery patients." />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:site_name" content="BariWiki by Parnell Wellness" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="BariWiki - Bariatric Surgery Encyclopedia" />
+        <meta name="twitter:description" content="Comprehensive encyclopedia of 1,300+ bariatric surgery terms and procedures." />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        
+        {/* Structured Data */}
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqData)}</script>
       </Helmet>
 
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
         <section className="text-center py-12 md:py-16">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <BookOpen className="h-12 w-12 text-blue-600" />
+            <BookOpen className="h-12 w-12 text-blue-600" aria-hidden="true" />
           </div>
           <h1 
             className="text-4xl sm:text-5xl font-semibold tracking-tight text-neutral-900 mb-4"
@@ -125,7 +147,7 @@ const HomePage = () => {
           >
             BariWiki
           </h1>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8 short-description">
             The comprehensive encyclopedia of bariatric surgery terms, procedures, and medical information.
           </p>
 
