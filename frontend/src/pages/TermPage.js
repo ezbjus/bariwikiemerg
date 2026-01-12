@@ -9,6 +9,7 @@ import AuthorityLinks from '../components/AuthorityLinks';
 import CategoryBadge from '../components/CategoryBadge';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+const SITE_URL = 'https://parnellwellness.com';
 
 const TermPage = () => {
   const { slug } = useParams();
