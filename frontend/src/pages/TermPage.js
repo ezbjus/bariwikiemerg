@@ -167,14 +167,34 @@ const TermPage = () => {
   return (
     <>
       <Helmet>
-        <title>{term?.meta_title || `${term?.name} - BariWiki`}</title>
-        <meta name="description" content={term?.meta_description || term?.short_description} />
-        <link rel="canonical" href={`https://bari-wiki.preview.emergentagent.com/wiki/${term?.slug}`} />
-        <meta property="og:title" content={term?.name} />
-        <meta property="og:description" content={term?.short_description} />
+        {/* Primary Meta Tags */}
+        <title>{term?.name} - Bariatric Surgery Term | BariWiki</title>
+        <meta name="title" content={`${term?.name} - Bariatric Surgery Term | BariWiki`} />
+        <meta name="description" content={term?.meta_description || term?.short_description || `Learn about ${term?.name} in bariatric surgery. Comprehensive medical information and expert resources.`} />
+        <meta name="keywords" content={`${term?.name}, bariatric surgery, ${term?.category}, weight loss surgery, ${term?.related_terms?.join(', ') || ''}`} />
+        <link rel="canonical" href={`${SITE_URL}/wiki/${term?.slug}`} />
+        <meta name="robots" content="index, follow" />
+        
+        {/* Open Graph */}
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${SITE_URL}/wiki/${term?.slug}`} />
+        <meta property="og:title" content={`${term?.name} - BariWiki`} />
+        <meta property="og:description" content={term?.short_description} />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:site_name" content="BariWiki by Parnell Wellness" />
+        <meta property="article:section" content={term?.category} />
+        <meta property="article:modified_time" content={term?.updated_at} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${term?.name} - BariWiki`} />
+        <meta name="twitter:description" content={term?.short_description} />
+        
+        {/* Structured Data */}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
         <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(speakableJsonLd)}</script>
       </Helmet>
 
       <main id="main" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
