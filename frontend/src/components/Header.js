@@ -61,6 +61,13 @@ const Header = () => {
           >
             Resources
           </Link>
+          <Link 
+            to="/disclaimer" 
+            className="text-sm text-neutral-600 hover:text-neutral-900 hover:no-underline"
+            data-testid="header-disclaimer-link"
+          >
+            Disclaimer
+          </Link>
         </nav>
 
         {/* Search */}
