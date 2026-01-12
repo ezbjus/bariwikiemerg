@@ -89,16 +89,22 @@ const TermPage = () => {
     });
   };
 
-  // JSON-LD structured data
+  // JSON-LD structured data for MedicalEntity
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalEntity",
     "name": term?.name,
     "description": term?.short_description || term?.meta_description,
-    "url": `https://bari-wiki.preview.emergentagent.com/wiki/${term?.slug}`,
-    "sameAs": term?.authority_links?.map(l => l.url) || []
+    "url": `${SITE_URL}/wiki/${term?.slug}`,
+    "sameAs": term?.authority_links?.map(l => l.url) || [],
+    "medicineSystem": "WesternConventional",
+    "relevantSpecialty": {
+      "@type": "MedicalSpecialty",
+      "name": "Bariatric Surgery"
+    }
   };
 
+  // Breadcrumb structured data
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -107,21 +113,55 @@ const TermPage = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://bari-wiki.preview.emergentagent.com/"
+        "item": SITE_URL
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": term?.category || "Terms",
-        "item": `https://bari-wiki.preview.emergentagent.com/category/${encodeURIComponent(term?.category || 'Uncategorized')}`
+        "item": `${SITE_URL}/category/${encodeURIComponent(term?.category || 'Uncategorized')}`
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": term?.name,
-        "item": `https://bari-wiki.preview.emergentagent.com/wiki/${term?.slug}`
+        "item": `${SITE_URL}/wiki/${term?.slug}`
       }
     ]
+  };
+
+  // Article structured data for better SEO
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": term?.name,
+    "description": term?.short_description,
+    "author": {
+      "@type": "Organization",
+      "name": "Parnell Wellness"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "BariWiki by Parnell Wellness",
+      "url": SITE_URL
+    },
+    "dateModified": term?.updated_at,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/wiki/${term?.slug}`
+    }
+  };
+
+  // Speakable for voice search
+  const speakableJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": term?.name,
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": [".short-description", ".term-description p:first-of-type", "h1"]
+    },
+    "url": `${SITE_URL}/wiki/${term?.slug}`
   };
 
   return (
