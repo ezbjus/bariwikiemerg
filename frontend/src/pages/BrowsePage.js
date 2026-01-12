@@ -5,6 +5,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import CategoryBadge from '../components/CategoryBadge';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+const SITE_URL = 'https://parnellwellness.com';
 
 const BrowsePage = () => {
   const { letter } = useParams();
