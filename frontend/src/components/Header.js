@@ -52,6 +52,17 @@ const Header = () => {
           </span>
         </Link>
 
+        {/* Navigation Links */}
+        <nav className="hidden md:flex items-center gap-4 ml-4">
+          <Link 
+            to="/resources" 
+            className="text-sm text-neutral-600 hover:text-neutral-900 hover:no-underline"
+            data-testid="header-resources-link"
+          >
+            Resources
+          </Link>
+        </nav>
+
         {/* Search */}
         <form onSubmit={handleSearch} className="flex items-center gap-2 ml-auto">
           <div className="relative">
