@@ -303,7 +303,7 @@ async def get_stats():
 @app.get("/api/sitemap.xml")
 async def get_sitemap():
     """Generate comprehensive SEO sitemap"""
-    base_url = "https://parnellwellness.com"
+    base_url = BASE_URL
     today = datetime.utcnow().strftime("%Y-%m-%d")
     
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
