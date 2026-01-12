@@ -6,6 +6,7 @@ import { Input } from '../components/ui/input';
 import { Button } from '../components/ui/button';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+const SITE_URL = 'https://parnellwellness.com';
 
 const HomePage = () => {
   const [stats, setStats] = useState({ total_terms: 0, published: 0, categories: 0 });
@@ -45,6 +46,63 @@ const HomePage = () => {
     if (searchQuery.trim()) {
       window.location.href = `/search?q=${encodeURIComponent(searchQuery.trim())}`;
     }
+  };
+
+  // Structured data for homepage
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "BariWiki - Bariatric Surgery Encyclopedia",
+    "description": "Comprehensive encyclopedia of bariatric surgery terms, procedures, complications, nutrition, and patient care. Over 1,300 medical terms explained.",
+    "url": SITE_URL,
+    "mainEntity": {
+      "@type": "MedicalCondition",
+      "name": "Obesity",
+      "associatedAnatomy": {
+        "@type": "AnatomicalStructure",
+        "name": "Digestive System"
+      }
+    },
+    "specialty": {
+      "@type": "MedicalSpecialty",
+      "name": "Bariatric Surgery"
+    },
+    "audience": {
+      "@type": "MedicalAudience",
+      "audienceType": "Patient"
+    }
+  };
+
+  // FAQ structured data for voice search
+  const faqData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is bariatric surgery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bariatric surgery refers to surgical procedures performed on the stomach or intestines to help with weight loss. Common procedures include gastric bypass, sleeve gastrectomy, and adjustable gastric banding."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the types of bariatric surgery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The main types of bariatric surgery include Roux-en-Y Gastric Bypass, Sleeve Gastrectomy, Adjustable Gastric Band (Lap-Band), and Biliopancreatic Diversion with Duodenal Switch (BPD/DS)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who qualifies for bariatric surgery?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Generally, candidates for bariatric surgery have a BMI of 40 or higher, or a BMI of 35-39.9 with serious obesity-related health conditions such as type 2 diabetes, high blood pressure, or sleep apnea."
+        }
+      }
+    ]
   };
 
   return (
