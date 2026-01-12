@@ -31,13 +31,13 @@ function App() {
         <div className="min-h-screen bg-white">
           <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<><Header /><HomePage /></>} />
-            <Route path="/wiki/:slug" element={<><Header /><TermPage /></>} />
-            <Route path="/browse/:letter" element={<><Header /><BrowsePage /></>} />
-            <Route path="/category/:category" element={<><Header /><CategoryPage /></>} />
-            <Route path="/search" element={<><Header /><SearchPage /></>} />
-            <Route path="/resources" element={<><Header /><ResourcesPage /></>} />
-            <Route path="/disclaimer" element={<><Header /><DisclaimerPage /></>} />
+            <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
+            <Route path="/wiki/:slug" element={<><Header /><TermPage /><Footer /></>} />
+            <Route path="/browse/:letter" element={<><Header /><BrowsePage /><Footer /></>} />
+            <Route path="/category/:category" element={<><Header /><CategoryPage /><Footer /></>} />
+            <Route path="/search" element={<><Header /><SearchPage /><Footer /></>} />
+            <Route path="/resources" element={<><Header /><ResourcesPage /><Footer /></>} />
+            <Route path="/disclaimer" element={<><Header /><DisclaimerPage /><Footer /></>} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
