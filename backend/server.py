@@ -378,8 +378,8 @@ async def get_sitemap():
 @app.get("/api/robots.txt")
 async def get_robots():
     """Return robots.txt for SEO"""
-    content = """# BariWiki - Bariatric Surgery Encyclopedia
-# https://parnellwellness.com
+    content = f"""# BariWiki - Bariatric Surgery Encyclopedia
+# {BASE_URL}
 
 User-agent: *
 Allow: /
@@ -387,7 +387,7 @@ Disallow: /admin
 Disallow: /admin/*
 
 # Sitemaps
-Sitemap: https://parnellwellness.com/api/sitemap.xml
+Sitemap: {BASE_URL}/api/sitemap.xml
 
 # Crawl-delay for politeness
 Crawl-delay: 1
