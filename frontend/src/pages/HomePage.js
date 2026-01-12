@@ -194,6 +194,24 @@ const HomePage = () => {
             professionals, patients, and researchers.
           </p>
         </section>
+
+        {/* Resources Link */}
+        <section className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-100">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-semibold text-blue-900">Helpful Resources</h2>
+              <p className="text-blue-700 text-sm mt-1">
+                Explore supplements, vitamins, and educational materials for bariatric patients.
+              </p>
+            </div>
+            <Link 
+              to="/resources" 
+              className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm font-medium"
+            >
+              View Resources
+            </Link>
+          </div>
+        </section>
       </main>
     </>
   );
