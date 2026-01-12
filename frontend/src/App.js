@@ -10,6 +10,7 @@ import BrowsePage from './pages/BrowsePage';
 import CategoryPage from './pages/CategoryPage';
 import SearchPage from './pages/SearchPage';
 import ResourcesPage from './pages/ResourcesPage';
+import DisclaimerPage from './pages/DisclaimerPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminTerms from './pages/AdminTerms';
