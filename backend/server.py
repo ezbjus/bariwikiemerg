@@ -301,24 +301,73 @@ async def get_stats():
 
 @app.get("/api/sitemap.xml")
 async def get_sitemap():
-    """Generate SEO sitemap"""
-    base_url = "https://bari-wiki.preview.emergentagent.com"
+    """Generate comprehensive SEO sitemap"""
+    base_url = "https://parnellwellness.com"
+    today = datetime.utcnow().strftime("%Y-%m-%d")
     
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
-    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+    xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
     
-    # Home page
-    xml += f'  <url><loc>{base_url}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n'
+    # Home page - highest priority
+    xml += f'''  <url>
+    <loc>{base_url}/</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>\n'''
     
-    # A-Z pages
+    # Resources page
+    xml += f'''  <url>
+    <loc>{base_url}/resources</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>\n'''
+    
+    # Disclaimer page
+    xml += f'''  <url>
+    <loc>{base_url}/disclaimer</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>\n'''
+    
+    # A-Z browse pages
     for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-        xml += f'  <url><loc>{base_url}/browse/{letter.lower()}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n'
+        xml += f'''  <url>
+    <loc>{base_url}/browse/{letter.lower()}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>\n'''
+    
+    # Category pages
+    pipeline = [
+        {"$match": {"status": "published"}},
+        {"$group": {"_id": "$category"}},
+    ]
+    async for doc in terms_collection.aggregate(pipeline):
+        if doc["_id"]:
+            category_slug = doc["_id"].replace(" ", "%20")
+            xml += f'''  <url>
+    <loc>{base_url}/category/{category_slug}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>\n'''
     
     # All published terms
-    cursor = terms_collection.find({"status": "published"}, {"slug": 1, "updated_at": 1})
+    cursor = terms_collection.find({"status": "published"}, {"slug": 1, "updated_at": 1, "name": 1})
     async for term in cursor:
-        lastmod = term.get("updated_at", datetime.utcnow()).strftime("%Y-%m-%d")
-        xml += f'  <url><loc>{base_url}/wiki/{term["slug"]}</loc><lastmod>{lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n'
+        lastmod = term.get("updated_at", datetime.utcnow())
+        if isinstance(lastmod, str):
+            lastmod = datetime.fromisoformat(lastmod.replace('Z', '+00:00'))
+        lastmod_str = lastmod.strftime("%Y-%m-%d")
+        xml += f'''  <url>
+    <loc>{base_url}/wiki/{term["slug"]}</loc>
+    <lastmod>{lastmod_str}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>\n'''
     
     xml += '</urlset>'
     return Response(content=xml, media_type="application/xml")
