@@ -9,9 +9,17 @@ import AuthorityLinks from '../components/AuthorityLinks';
 import CategoryBadge from '../components/CategoryBadge';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
-const SITE_URL = 'https://parnellwellness.com';
+
+// Use window.location.origin for SEO URLs in production
+const getSiteUrl = () => {
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
+  }
+  return 'https://parnellwellness.com';
+};
 
 const TermPage = () => {
+  const SITE_URL = getSiteUrl();
   const { slug } = useParams();
   const [term, setTerm] = useState(null);
   const [loading, setLoading] = useState(true);
