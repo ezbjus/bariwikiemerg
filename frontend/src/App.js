@@ -28,7 +28,7 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white flex flex-col">
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<><Header /><HomePage /><Footer /></>} />
